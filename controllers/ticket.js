@@ -58,4 +58,15 @@ async function updateTicket(req, res) {
   }
 }
 
-module.exports = { resetTickets, updateTicket };
+async function getClosedTickets(req, res) {
+  try {
+    const closedTickets = await Ticket.find({ status: 'close' });
+
+    res.status(200).json(closedTickets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+module.exports = { resetTickets, updateTicket, getClosedTickets };
