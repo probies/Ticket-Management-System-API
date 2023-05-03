@@ -2,6 +2,26 @@
 
 This API provides endpoints to manage tickets.
 
+## Steps to start the server:
+
+1. Install project dependecny in at project root directory
+
+```bash
+   npm install
+```
+
+2. Run cmd in terminal or bash
+
+```bash
+   npm run server
+```
+
+API services will start running at
+
+```http
+http://localhost:8000/api
+```
+
 ## Endpoints
 
 ### 1. API for admin to Seed ticket for first time in DB or reset the server (opens up all the tickets)
