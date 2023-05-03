@@ -34,8 +34,14 @@ async function updateTicket(req, res) {
       return res.status(404).json({ error: "Ticket not found" });
     }
 
-    if (ticket.status === "close") {
-      return res.status(400).json({ error: "Ticket already booked" });
+    // Check if the status is valid
+    if (req.body.status !== "open" && req.body.status !== "close") {
+      return res.status(400).json({ error: "Invalid status. Either open/close" });
+    }
+
+    // Check if the ticket is already closed
+    if (ticket.status === "close" && req.body.status === "close") {
+      return res.status(409).json({ error: "Ticket already closed" });
     }
 
     // Update the ticket status and owner details
