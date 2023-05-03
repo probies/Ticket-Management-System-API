@@ -58,6 +58,21 @@ async function updateTicket(req, res) {
   }
 }
 
+async function getTicketStatus(req, res) {
+  try {
+    const ticket = await Ticket.findById(req.params.ticketId);
+
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    res.status(200).json({ status: ticket.status });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 async function getClosedTickets(req, res) {
   try {
     const closedTickets = await Ticket.find({ status: "close" });
@@ -99,4 +114,11 @@ async function getTicketUser(req, res) {
   }
 }
 
-module.exports = { resetTickets, updateTicket, getClosedTickets, getOpenTickets, getTicketUser };
+module.exports = {
+  resetTickets,
+  updateTicket,
+  getTicketStatus,
+  getClosedTickets,
+  getOpenTickets,
+  getTicketUser,
+};
