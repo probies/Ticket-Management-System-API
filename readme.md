@@ -42,7 +42,7 @@ Authorization: Bearer GDVFHAED83567YHRIF2975YRUIFH283RUOE2
 
 ### 2. Update the ticket status (open/close + adding user details)
 
-Endpoint: `POST /api/tickets/:ticketId`
+Endpoint: `PATCH /api/tickets/:ticketId`
 
 Creates a new ticket and returns the newly created ticket object.
 
