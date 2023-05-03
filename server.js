@@ -21,8 +21,8 @@ mongoose
 .catch(err => console.log(err));
 
 
-// const ticketRoutes = require('./routes/ticket');
-// app.use('/api/user', ticketRoutes);
+const ticketRoutes = require('./routes/ticket');
+app.use('/api/tickets', ticketRoutes);
 
 
 //port
