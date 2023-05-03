@@ -60,7 +60,7 @@ async function updateTicket(req, res) {
     res.status(200).json({ message: "Ticket updated successfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Ticket not found" });
   }
 }
 
@@ -75,7 +75,7 @@ async function getTicketStatus(req, res) {
     res.status(200).json({ status: ticket.status });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Ticket not found" });
   }
 }
 
@@ -116,7 +116,7 @@ async function getTicketUser(req, res) {
     res.status(200).json(ticket.owner);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Ticket not found" });
   }
 }
 

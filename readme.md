@@ -50,7 +50,7 @@ Creates a new ticket and returns the newly created ticket object.
 
 ```javascript
 {
-  "seatNumber": "A1",
+  "status": "open/close",
   "owner": {
     "name": "John Doe",
     "email": "johndoe@example.com",
