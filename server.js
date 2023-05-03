@@ -22,7 +22,7 @@ mongoose
 
 
 const ticketRoutes = require('./routes/ticket');
-app.use('/api/tickets', ticketRoutes);
+app.use('/api', ticketRoutes);
 
 
 //port
