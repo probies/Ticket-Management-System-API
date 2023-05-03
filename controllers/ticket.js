@@ -34,8 +34,8 @@ async function updateTicket(req, res) {
       return res.status(404).json({ error: "Ticket not found" });
     }
 
-    if (ticket.status === 'close') {
-      return res.status(400).json({ error: 'Ticket already booked' });
+    if (ticket.status === "close") {
+      return res.status(400).json({ error: "Ticket already booked" });
     }
 
     // Update the ticket status and owner details
@@ -60,24 +60,43 @@ async function updateTicket(req, res) {
 
 async function getClosedTickets(req, res) {
   try {
-    const closedTickets = await Ticket.find({ status: 'close' });
+    const closedTickets = await Ticket.find({ status: "close" });
 
     res.status(200).json(closedTickets);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
 async function getOpenTickets(req, res) {
   try {
-    const closedTickets = await Ticket.find({ status: 'open' });
+    const closedTickets = await Ticket.find({ status: "open" });
 
     res.status(200).json(closedTickets);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
-module.exports = { resetTickets, updateTicket, getClosedTickets, getOpenTickets };
+async function getTicketUser(req, res) {
+  try {
+    const ticket = await Ticket.findById(req.params.ticketId);
+
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    if (!ticket.owner) {
+      return res.status(404).json({ error: "Ticket owner not found" });
+    }
+
+    res.status(200).json(ticket.owner);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+module.exports = { resetTickets, updateTicket, getClosedTickets, getOpenTickets, getTicketUser };
